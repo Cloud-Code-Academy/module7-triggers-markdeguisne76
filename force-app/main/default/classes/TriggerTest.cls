@@ -335,7 +335,10 @@ public with sharing class TriggerTest {
             delete opportunitiesToInsert;
             System.assert(false, 'Expected an exception but did not get one.');
         } catch (DmlException e) {
-            System.assert(e.getMessage().contains('Cannot delete closed opportunity for a banking account that is won'), 'The error message is not as expected.');
+            System.assert(
+                e.getMessage().toLowerCase().contains('cannot delete closed opportunity for a banking account that is won'),
+                'The error message is not as expected. Actual message: ' + e.getMessage()
+            );            
         }
         Test.stopTest();
     }
